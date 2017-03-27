@@ -1,0 +1,19 @@
+Insertion Sort
+Array Length: 1000 Operations: 246657 Validity: Valid
+
+
+Bubble Sort
+Array Length: 1000 Operations: 499364 Validity: Valid
+
+
+Selection Sort
+Array Length: 1000 Operations: 499500 Validity: Valid
+
+
+Merge Sort
+Array Length: 1000 Operations: 19952 Validity: Valid
+
+
+Quick Sort
+Array Length: 1000 Operations: 8974 Validity: Valid
+

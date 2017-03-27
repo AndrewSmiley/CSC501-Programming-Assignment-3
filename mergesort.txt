@@ -1,0 +1,75 @@
+    /**
+     * This is our merge sort merge method. This method will take the lhs and the rhs of the 'original' (pre-split) array and merge them
+     * back into the original array in sorted order
+     * @param array the original array we wanted to sort
+     * @param left the left hand side of the orginal array to sort
+     * @param right the right hand side of the original array to sort
+     */
+    public static int merge(Integer[] array, Integer[] left, Integer [] right, Integer operations ){
+        //set these all to the first index
+        //these are all the starting indexes of the lhs, rhs and starting array respectively
+        int leftIndex = 0;
+        int rightIndex = 0;
+        int arrayIndex = 0;
+        //while we haven't reached the end of one of the arrays
+        while(leftIndex < left.length && rightIndex < right.length) {
+            //increment twice because of these two comparisons
+            operations++;
+            operations++;
+            //if the left array index is less than the right array index
+            //then place that index element in the orginal array
+            //cool use of post-fix operators
+            operations++;
+            if(left[leftIndex] < right[rightIndex]){
+                array[arrayIndex++] = left[leftIndex++];
+            }
+            else {
+                //otherwise, put the right index element in that spot
+                array[arrayIndex++] = right[rightIndex++];
+                operations++;
+            }
+        }
+            //clear out the remaining elements from each array, starting with the left, one of these will not be executed
+            while(leftIndex < left.length){
+                array[arrayIndex++] = left[leftIndex++];
+                operations++;
+            }
+
+            //now the right
+            while(rightIndex < right.length){
+                operations++;
+                array[arrayIndex++] = right[rightIndex++];
+            }
+        return  operations;
+    }
+
+    /**
+     * This method is our merge sort method. Takes an integer array argument to sort
+     * @param array the array to sort
+     * @return the number of operations the sorting took
+     */
+    public static int mergeSort(Integer[] array, Integer operations){
+        //if  the length of the array, is greater than one, then we can split the array
+        operations++;
+        if(array.length>1) {
+            //Split the array in half in two parts
+            //create the new arrays first, then do an array copy to transfer the values over,
+            Integer[] left = new Integer[array.length / 2];
+            Integer[] right = new Integer[array.length - left.length];
+            //now we do the actual copying
+
+            System.arraycopy(array, 0, left, 0, left.length);
+
+            System.arraycopy(array, left.length, right, 0, right.length);
+            //recurse on the left and right hand sides
+            mergeSort(left, operations);
+            mergeSort(right, operations);
+            //finally, merge the two split halves, which are sorted
+            return operations+merge(array, left, right, operations);
+        }else{
+
+            return operations;
+        }
+
+        }
+
